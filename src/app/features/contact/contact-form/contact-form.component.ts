@@ -16,9 +16,6 @@ import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-@Injectable({
-  providedIn: 'root'
-})
 @Component({
   selector: 'app-contact-form',
   imports: [MatFormFieldModule,MatSelectModule,ReactiveFormsModule, MatInputModule ,CommonModule],
@@ -38,7 +35,6 @@ export class ContactFormComponent {
     public dialogRef: MatDialogRef<ContactFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User
   ) {
-
 
     this.form = this.formBuilder.group({
       id: [],

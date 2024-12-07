@@ -5,7 +5,7 @@ import { ContactService } from './services/contact.service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  providers: [ContactService],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
