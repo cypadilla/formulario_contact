@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Injectable } from '@angular/core';
 import {MatFormFieldModule ,} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -16,7 +16,9 @@ import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-contact-form',
   imports: [MatFormFieldModule,MatSelectModule,ReactiveFormsModule, MatInputModule ,CommonModule],
