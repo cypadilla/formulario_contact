@@ -1,1 +1,88 @@
 <p>contact-form works!</p>
+<div class="form-content">
+  <h2>Formulario de Contacto</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <mat-form-field class="form-input" appearance="outline">
+        <mat-label>Nombre </mat-label>
+        <input matInput formControlName="name" placeholder="Nombre" required>
+      </mat-form-field>
+
+      <mat-form-field class="form-input" appearance="outline">
+        <mat-label>Apellido </mat-label>
+        <input matInput formControlName="last_name" placeholder="Apellido" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+
+      <mat-form-field class="form-input" appearance="outline">
+        <mat-label>Sexo </mat-label>
+        <mat-select formControlName="sex" required>
+          <mat-option value="Mujer">Mujer</mat-option>
+          <mat-option value="Hombre">Hombre</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-input" appearance="outline">
+        <mat-label>Fecha de Nacimiento </mat-label>
+        <input matInput type="date" formControlName="date_birthday" required>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="form-input" style="width: 100%;" appearance="outline">
+        <mat-label>Email </mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Email" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="form-input" style="width: 100%;"appearance="outline">
+        <mat-label>Dirección </mat-label>
+        <input matInput formControlName="addres" placeholder="Dirección" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="form-input"  appearance="outline">
+        <mat-label>Casa / Apartamento</mat-label>
+        <input matInput formControlName="home_apartment" placeholder="Dirección" >
+      </mat-form-field>
+
+      <mat-form-field  class="form-input" appearance="outline">
+        <mat-label> Pais</mat-label>
+        <mat-select formControlName="country" required>
+          <mat-option value="Colombia">Colombia</mat-option>
+          <mat-option value="Argentina">Argentina</mat-option>
+          <mat-option value="Mexico">Mexico</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form-group">
+      <mat-form-field  class="form-input"  appearance="outline">
+        <mat-label>Departamento </mat-label>
+        <input matInput formControlName="Deparment" placeholder="Departamento" required >
+      </mat-form-field>
+
+      <mat-form-field  class="form-input" appearance="outline">
+        <mat-label>Ciudad </mat-label>
+        <input matInput formControlName="City" placeholder="Ciudad" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="form-input" style="width: 100%;" appearance="outline">
+        <mat-label>Comentarios</mat-label>
+        <textarea matInput formControlName="comment" placeholder="Comentarios" required></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="submit-btn">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Enviar</button>
+    </div>
+  </form>
+</div>
