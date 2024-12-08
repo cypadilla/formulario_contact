@@ -10,12 +10,14 @@ import { ContactService } from '../../../services/contact.service';
 import { User } from '../../../models/user.model';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
 @Component({
   selector: 'app-contact-table',
-  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule,MatButtonModule, DatePipe, MatDialogModule],
+  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule,MatButtonModule, DatePipe, MatDialogModule,MatFormFieldModule, MatInputModule,],
   templateUrl: './contact-table.component.html',
   styleUrl: './contact-table.component.scss'
 })
@@ -136,7 +138,10 @@ export class ContactTableComponent implements AfterViewInit, OnInit {
 
   }
 
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
 }
 
