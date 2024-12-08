@@ -103,6 +103,9 @@ export class ContactFormComponent {
           Deparment: this.form.controls['Deparment'].disabled ? '' : this.form.value.Deparment,
         };
         console.log(formValueWithId);
+        if(this.dialogRef){
+          this.dialogRef.close(formValueWithId);
+        }
         this.router.navigate(['/contact-table']);
       }
     }
