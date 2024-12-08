@@ -14,7 +14,6 @@ import {
 } from '@angular/forms';
 import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contact-form',
@@ -32,8 +31,6 @@ export class ContactFormComponent {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private router: Router,
-    public dialogRef: MatDialogRef<ContactFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: User
   ) {
 
     this.form = this.formBuilder.group({
@@ -51,22 +48,22 @@ export class ContactFormComponent {
       comment: ['', Validators.required],
     });
 
-    if(this.data !== null && this.data !== undefined){
-      this.form.patchValue({
-        id: data.id,
-        name: data.name,
-        last_name: data.last_name,
-        email:data.email,
-        date_birthday: data.date_birthday,
-        sex: data.sex,
-        addres: data.addres,
-        country: data.country,
-        Deparment: data.Deparment,
-        City: data.City,
-        home_apartment: data.home_apartment,
-        comment: data.comment
-      })
-    }
+    // if(this.data !== null && this.data !== undefined){
+    //   this.form.patchValue({
+    //     id: data.id,
+    //     name: data.name,
+    //     last_name: data.last_name,
+    //     email:data.email,
+    //     date_birthday: data.date_birthday,
+    //     sex: data.sex,
+    //     addres: data.addres,
+    //     country: data.country,
+    //     Deparment: data.Deparment,
+    //     City: data.City,
+    //     home_apartment: data.home_apartment,
+    //     comment: data.comment
+    //   })
+    // }
 
     console.log(this.user)
     // Reactivar "Deparment" cuando el país sea "Colombia"
@@ -100,11 +97,10 @@ export class ContactFormComponent {
       } else {
         const formValueWithId = {
           ...this.form.value,
-          id: this.data?.id || uuidv4(), // Generar ID único
+          // id: this.data?.id || uuidv4(), // Generar ID único
           Deparment: this.form.controls['Deparment'].disabled ? '' : this.form.value.Deparment,
         };
         console.log(formValueWithId);
-        this.dialogRef.close(formValueWithId);
         this.router.navigate(['/contact-table']);
       }
     }
