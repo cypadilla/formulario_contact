@@ -1,4 +1,4 @@
-import {Component, ViewChild, AfterViewInit, inject} from '@angular/core';
+import {Component, ViewChild, AfterViewInit, inject, OnInit} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
@@ -9,6 +9,7 @@ import {DatePipe} from '@angular/common';
 import { ContactService } from '../../../services/contact.service';
 import { User } from '../../../models/user.model';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
+import { Router } from '@angular/router';
 
 
 
@@ -18,10 +19,22 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
   templateUrl: './contact-table.component.html',
   styleUrl: './contact-table.component.scss'
 })
-export class ContactTableComponent implements AfterViewInit {
+export class ContactTableComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['name', 'last_name', 'date_birthday', 'email', 'addres', 'country', 'Deparment', 'City', 'home_apartment', 'comment', 'Actions' ];
   users: User[] = [];
+  userEdit: User = {
+    id: 0,
+    sex: '',
+    date_birthday: '',
+    name: '',
+    last_name: '',
+    email: '',
+    addres: '',
+    country: '',
+    City: '',
+    comment: ''
+  };
   error: string | null = null;;
   resultsLength = 0;
   isLoadingResults = true;
@@ -36,8 +49,17 @@ export class ContactTableComponent implements AfterViewInit {
 
   constructor(
     private contactService:ContactService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ){}
+
+  ngOnInit(): void {
+    const navigation = this.router.getCurrentNavigation();
+    this.userEdit = navigation?.extras.state?.['user'];
+    if (this.userEdit) {
+      console.log('Recibido:', this.userEdit);
+    }
+  }
 
   ngAfterViewInit() {
 
@@ -48,15 +70,15 @@ export class ContactTableComponent implements AfterViewInit {
           id: item.id,
           sex: item.sex,
           date_birthday: item.date_birthday,
-          name: item.name,
-          last_name: item.last_name,
-          email: item.email,
-          addres: item.addres, // Mantener la propiedad como está en el JSON
-          country: item.country,
-          Deparment: item.Deparment,
-          City: item.City,
-          home_apartment: '', // Valor por defecto si no existe
-          comment: item.comment,
+          name: item.name || 'N/A', // Asegura un valor predeterminado
+          last_name: item.last_name || 'N/A',
+          email: item.email || 'N/A',
+          addres: item.addres || 'N/A',
+          country: item.country || 'N/A',
+          Deparment: item.Deparment || 'N/A',
+          City: item.City || 'N/A',
+          home_apartment: '',
+          comment: item.comment || '',
         }));
         this.dataSource.paginator = this.paginator; // Vincular el paginador
         this.dataSource.sort = this.sort; // Vincular el ordenamiento
@@ -70,6 +92,7 @@ export class ContactTableComponent implements AfterViewInit {
       }
     });
     console.log(this.dataSource.data);
+    this.dataSource.data = [...this.dataSource.data, this.userEdit];
   }
 
   editUser(user: User): void {

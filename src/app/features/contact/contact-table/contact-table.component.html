@@ -8,7 +8,7 @@
   </div>
   <div class="example-container mat-elevation-z8">
 
-    <div class="example-table-container">
+    <div class="responsive-table-container">
 
       <table mat-table [dataSource]="dataSource" class="example-table"
              matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
@@ -16,13 +16,13 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.name}}</td>
         </ng-container>
 
         <!-- Last name Column -->
         <ng-container matColumnDef="last_name">
           <th mat-header-cell *matHeaderCellDef>Apellido</th>
-          <td mat-cell *matCellDef="let row">{{row.last_name}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.last_name}}</td>
         </ng-container>
 
         <!-- date_birthday Column -->
@@ -30,7 +30,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Fecha de nacimiento
           </th>
-          <td mat-cell *matCellDef="let row">{{row.date_birthday | date}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.date_birthday | date}}</td>
         </ng-container>
 
          <!-- email Column -->
@@ -38,7 +38,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Correo
           </th>
-          <td mat-cell *matCellDef="let row">{{row.email}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.email}}</td>
         </ng-container>
 
         <!-- addres Column -->
@@ -46,7 +46,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Direccion
           </th>
-          <td mat-cell *matCellDef="let row">{{row.addres}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.addres}}</td>
         </ng-container>
 
          <!-- addres Column -->
@@ -54,7 +54,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Pais
           </th>
-          <td mat-cell *matCellDef="let row">{{row.country}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.country}}</td>
         </ng-container>
 
 
@@ -63,7 +63,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Departamento
           </th>
-          <td mat-cell *matCellDef="let row">{{row.Deparment}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.Deparment}}</td>
         </ng-container>
 
 
@@ -72,7 +72,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Ciudad
           </th>
-          <td mat-cell *matCellDef="let row">{{row.City}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.City}}</td>
         </ng-container>
 
         <!-- home_apartment Column -->
@@ -80,7 +80,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Casa / Apartamento
           </th>
-          <td mat-cell *matCellDef="let row">{{row.home_apartment}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.home_apartment}}</td>
         </ng-container>
 
 
@@ -89,7 +89,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
             Comentarios
           </th>
-          <td mat-cell *matCellDef="let row">{{row.comment}}</td>
+          <td mat-cell *matCellDef="let row">{{row?.comment}}</td>
         </ng-container>
 
         <!-- Actions Column -->
