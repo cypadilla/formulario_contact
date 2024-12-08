@@ -1,4 +1,4 @@
-import { Component, Inject, Injectable } from '@angular/core';
+import { Component, inject, Inject, Injectable, Optional } from '@angular/core';
 import {MatFormFieldModule ,} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contact-form',
@@ -25,12 +26,13 @@ import { Router } from '@angular/router';
 export class ContactFormComponent {
 
   user : User[] = [];
-
   form: FormGroup;
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private router: Router,
+    @Optional() public dialogRef: MatDialogRef<ContactFormComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any // Los datos enviados al diálogo
   ) {
 
     this.form = this.formBuilder.group({
@@ -48,22 +50,22 @@ export class ContactFormComponent {
       comment: ['', Validators.required],
     });
 
-    // if(this.data !== null && this.data !== undefined){
-    //   this.form.patchValue({
-    //     id: data.id,
-    //     name: data.name,
-    //     last_name: data.last_name,
-    //     email:data.email,
-    //     date_birthday: data.date_birthday,
-    //     sex: data.sex,
-    //     addres: data.addres,
-    //     country: data.country,
-    //     Deparment: data.Deparment,
-    //     City: data.City,
-    //     home_apartment: data.home_apartment,
-    //     comment: data.comment
-    //   })
-    // }
+    if(this.data !== null && this.data !== undefined){
+      this.form.patchValue({
+        id: this.data.id,
+        name: this.data.name,
+        last_name: this.data.last_name,
+        email:this.data.email,
+        date_birthday: this.data.date_birthday,
+        sex: this.data.sex,
+         addres: this.data.addres,
+        country: this.data.country,
+        Deparment: this.data.Deparment,
+        City: this.data.City,
+        home_apartment: this.data.home_apartment,
+        comment: this.data.comment
+      })
+    }
 
     console.log(this.user)
     // Reactivar "Deparment" cuando el país sea "Colombia"
@@ -97,7 +99,7 @@ export class ContactFormComponent {
       } else {
         const formValueWithId = {
           ...this.form.value,
-          // id: this.data?.id || uuidv4(), // Generar ID único
+          id: this.data?.id || uuidv4(), // Generar ID único
           Deparment: this.form.controls['Deparment'].disabled ? '' : this.form.value.Deparment,
         };
         console.log(formValueWithId);

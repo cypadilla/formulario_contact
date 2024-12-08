@@ -3,7 +3,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTable, MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {DatePipe} from '@angular/common';
 import { ContactService } from '../../../services/contact.service';
@@ -14,7 +14,7 @@ import { ContactFormComponent } from '../contact-form/contact-form.component';
 
 @Component({
   selector: 'app-contact-table',
-  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule,MatButtonModule, DatePipe],
+  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule,MatButtonModule, DatePipe, MatDialogModule],
   templateUrl: './contact-table.component.html',
   styleUrl: './contact-table.component.scss'
 })
@@ -26,7 +26,6 @@ export class ContactTableComponent implements AfterViewInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -88,7 +87,7 @@ export class ContactTableComponent implements AfterViewInit {
       height: '90vh',
       maxWidth: '100vw',
       panelClass: 'custom-dialog',
-      data: user
+      data: user || {} // Pasar datos del usuario o un objeto vacío
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
