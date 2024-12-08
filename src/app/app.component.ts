@@ -7,7 +7,8 @@ import { ContactService } from './services/contact.service';
   imports: [RouterOutlet],
   providers: [],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  standalone:true
 })
 export class AppComponent {
   title = 'formulario_contacto';

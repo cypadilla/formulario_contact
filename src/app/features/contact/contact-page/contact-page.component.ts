@@ -6,7 +6,8 @@ import { User } from '../../../models/user.model';
   selector: 'app-contact-page',
   imports: [ContactFormComponent],
   templateUrl: './contact-page.component.html',
-  styleUrl: './contact-page.component.scss'
+  styleUrl: './contact-page.component.scss',
+  standalone: true
 })
 export class ContactPageComponent {
 
