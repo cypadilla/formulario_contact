@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactFormComponent } from '../../contact/contact-form/contact-form.component';
 import { User } from '../../../models/user.model';
-import { MatDialog, MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-contact-page',
-  imports: [ContactFormComponent,MatDialogModule],
+  imports: [ContactFormComponent,MatDialogModule,MatButtonModule],
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.scss',
   standalone: true
